@@ -1,0 +1,13 @@
+{
+	"name": "ki_vv-backend",
+	"scripts": {
+		"dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node -T src/index.ts\"",
+		"build": "tsc",
+		"serve": "node ./dist/index.js"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4"
+	}
+}
