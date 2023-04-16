@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://rsms.me/inter/inter.css");
+
+:root {
+	--inter: "Inter";
+}
+@supports (font-variation-settings: normal) {
+	:root {
+		--inter: "Inter var";
+	}
+}
