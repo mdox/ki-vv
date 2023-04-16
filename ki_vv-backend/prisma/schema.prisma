@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model Currency {
+    id               Int            @id @default(autoincrement())
+    code             String // ISO 4217
+    fromCurrencyPair CurrencyPair[]
+    toCurrencyPair   CurrencyPair[] @relation(name: "toCurrencyPair")
+}
+
+model CurrencyRate {
+    id     Int          @id @default(autoincrement())
+    pair   CurrencyPair @relation(fields: [pairId], references: [id])
+    rate   Float
+    pairId Int
+}
+
+model CurrencyPair {
+    id     Int            @id @default(autoincrement())
+    from   Currency       @relation(fields: [fromId], references: [id])
+    fromId Int
+    to     Currency       @relation(fields: [toId], references: [id], name: "toCurrencyPair")
+    toId   Int
+    rate   CurrencyRate[]
+}
